@@ -14,18 +14,23 @@ class _GameModeScreenState extends State<GameModeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("Choose the game mode!"),),
+        title: const Center(
+          child: Text("Choose the game mode!"),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextButton(
-            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.grey)),
-                onPressed: () {Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MultiplayerTikTakToe()),
-            );}, child: const Text("Multiplayer"))
+                style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.grey)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MultiplayerTikTakToe()),
+                  );
+                },
+                child: const Text("Multiplayer"))
           ],
         ),
       ),

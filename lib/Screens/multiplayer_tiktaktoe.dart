@@ -4,9 +4,9 @@ void getNextPlayer(player) {
   player = !player;
 }
 
-bool boardIsFull(List<Icon?> icons){
-  for(int i=0;i<icons.length;i++){
-    if(icons[i] == null) {
+bool boardIsFull(List<Icon?> icons) {
+  for (int i = 0; i < icons.length; i++) {
+    if (icons[i] == null) {
       return false;
     }
   }
@@ -14,28 +14,28 @@ bool boardIsFull(List<Icon?> icons){
 }
 
 bool checkWinner(List<bool> list) {
-  if(list[0] && list[1] && list[2]){
+  if (list[0] && list[1] && list[2]) {
     return true;
   }
-  if(list[3] && list[4] && list[5]){
+  if (list[3] && list[4] && list[5]) {
     return true;
   }
-  if(list[6] && list[7] && list[8]){
+  if (list[6] && list[7] && list[8]) {
     return true;
   }
-  if(list[0] && list[3] && list[6]){
+  if (list[0] && list[3] && list[6]) {
     return true;
   }
-  if(list[1] && list[4] && list[7]){
+  if (list[1] && list[4] && list[7]) {
     return true;
   }
-  if(list[2] && list[5] && list[8]){
+  if (list[2] && list[5] && list[8]) {
     return true;
   }
-  if(list[0] && list[4] && list[8]){
+  if (list[0] && list[4] && list[8]) {
     return true;
   }
-  if(list[2] && list[4] && list[6]){
+  if (list[2] && list[4] && list[6]) {
     return true;
   }
   return false;
@@ -56,10 +56,15 @@ class _MultiplayerTikTakToeState extends State<MultiplayerTikTakToe> {
   var boardIsZero = List<bool>.filled(9, false);
   var boardIsX = List<bool>.filled(9, false);
   String winnerText = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("Tictactoe in multiplayer"),),),
+      appBar: AppBar(
+        title: const Center(
+          child: Text("Tictactoe in multiplayer"),
+        ),
+      ),
       body: Column(
         children: [
           GridView.builder(
@@ -99,25 +104,31 @@ class _MultiplayerTikTakToeState extends State<MultiplayerTikTakToe> {
                               currentPlayer = !currentPlayer;
                             });
                           }
-                          if(boardIsFull(boardIcons) && winnerText==""){
-                            winnerText="Draw";
+                          if (boardIsFull(boardIcons) && winnerText == "") {
+                            winnerText = "Draw";
                           }
                         }),
                   ),
                 );
               }),
-          Text(winnerText, style: TextStyle(color: Colors.blue, fontSize: 20),),
-          if(winnerText!= "")TextButton(onPressed: () {
-            setState(() {
-              boardIcons.fillRange(0, 9, null);
-              boardIsZero.fillRange(0, 9, false);
-              boardIsX.fillRange(0, 9, false);
-              winnerText = "";
-              currentPlayer = false;
-            });
-          }, child: Text("Play again!"),
-            style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.grey)),
+          Text(
+            winnerText,
+            style: TextStyle(color: Colors.blue, fontSize: 20),
           ),
+          if (winnerText != "")
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  boardIcons.fillRange(0, 9, null);
+                  boardIsZero.fillRange(0, 9, false);
+                  boardIsX.fillRange(0, 9, false);
+                  winnerText = "";
+                  currentPlayer = false;
+                });
+              },
+              child: Text("Play again!"),
+              style: ButtonStyle(backgroundColor: MaterialStatePropertyAll<Color>(Colors.grey)),
+            ),
         ],
       ),
     );
